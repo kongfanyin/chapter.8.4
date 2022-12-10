@@ -16,7 +16,8 @@ void show(stringy &b1, int m = 1)
 		puts(b1.string);
 	}
 }
-template<typename T>T maxT(T* arr);
+template<typename T>T max5(T* arr);
+template<typename T>T maxn(T* arr,int m);
 template<typename T> void show(T &b1,int m=1)
 {
 	using namespace std;
@@ -47,13 +48,48 @@ int main(char argc, char** argv)
 	show(testing);
 	show(testing, 3);
 	show("done");
+	int arr[5] = { 4,3,6,22,1};
+	auto m=max5(arr);
 
+	double arr1[] = { 2.4,54.7,23.6,79.6,675.3,999.9 };
+	auto rev = maxn(arr1, sizeof(arr1) / sizeof(arr1[0]));
+	std::cout << rev;
 	return 0;
 }
-template<typename T>T maxT(T* arr)
-{
-	int i = 5;
-	int n=sizeof T;
-	
 
+
+template<typename T>T max5(T* arr)
+{
+	int n = 5;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < 5 - i - 1; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				T temp = 0;
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	return arr[4];
+}
+template<typename T>T maxn(T* arr,int m)
+{
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < m - i - 1; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				T temp = 0;
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	return arr[m-1];
 }
